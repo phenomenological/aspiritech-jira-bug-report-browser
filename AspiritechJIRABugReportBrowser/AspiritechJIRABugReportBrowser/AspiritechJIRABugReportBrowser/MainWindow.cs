@@ -23,5 +23,20 @@ namespace AspiritechJIRABugReportBrowser
             this.jira_reportsTableAdapter.Fill(this.masterDataSet.jira_reports);
 
         }
+
+        // Populate the Entry Details box when the user double-clicks a cell.
+        private void datJiraSubmissions_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            lnkJiraEntry.Text = datJiraSubmissions[1, e.RowIndex].Value.ToString();
+        }
+
+        // Open JIRA in the default web browser if the link is clicked while it has text.
+        private void lnkJiraEntry_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (lnkJiraEntry.Text != "")
+            {
+                System.Diagnostics.Process.Start("https://jirapro.bose.com/browse" + lnkJiraEntry.Text);
+            }
+        }
     }
 }

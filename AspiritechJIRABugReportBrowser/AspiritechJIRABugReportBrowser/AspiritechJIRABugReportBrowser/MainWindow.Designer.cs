@@ -44,6 +44,8 @@
             this.jirareportsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.masterDataSet = new AspiritechJIRABugReportBrowser.masterDataSet();
             this.jira_reportsTableAdapter = new AspiritechJIRABugReportBrowser.masterDataSetTableAdapters.jira_reportsTableAdapter();
+            this.txtEntryDetails = new System.Windows.Forms.TextBox();
+            this.lnkJiraEntry = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.datJiraSubmissions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jirareportsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.masterDataSet)).BeginInit();
@@ -54,9 +56,8 @@
             this.datJiraSubmissions.AllowUserToAddRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.datJiraSubmissions.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.datJiraSubmissions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.datJiraSubmissions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.datJiraSubmissions.AutoGenerateColumns = false;
             this.datJiraSubmissions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datJiraSubmissions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -73,8 +74,9 @@
             this.datJiraSubmissions.Location = new System.Drawing.Point(12, 12);
             this.datJiraSubmissions.Name = "datJiraSubmissions";
             this.datJiraSubmissions.RowHeadersVisible = false;
-            this.datJiraSubmissions.Size = new System.Drawing.Size(894, 238);
+            this.datJiraSubmissions.Size = new System.Drawing.Size(894, 414);
             this.datJiraSubmissions.TabIndex = 0;
+            this.datJiraSubmissions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datJiraSubmissions_CellDoubleClick);
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -148,11 +150,33 @@
             // 
             this.jira_reportsTableAdapter.ClearBeforeFill = true;
             // 
+            // txtEntryDetails
+            // 
+            this.txtEntryDetails.Location = new System.Drawing.Point(912, 45);
+            this.txtEntryDetails.Multiline = true;
+            this.txtEntryDetails.Name = "txtEntryDetails";
+            this.txtEntryDetails.ReadOnly = true;
+            this.txtEntryDetails.Size = new System.Drawing.Size(347, 381);
+            this.txtEntryDetails.TabIndex = 1;
+            this.txtEntryDetails.TabStop = false;
+            // 
+            // lnkJiraEntry
+            // 
+            this.lnkJiraEntry.AutoSize = true;
+            this.lnkJiraEntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnkJiraEntry.Location = new System.Drawing.Point(912, 12);
+            this.lnkJiraEntry.Name = "lnkJiraEntry";
+            this.lnkJiraEntry.Size = new System.Drawing.Size(0, 16);
+            this.lnkJiraEntry.TabIndex = 2;
+            this.lnkJiraEntry.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkJiraEntry_LinkClicked);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(918, 262);
+            this.ClientSize = new System.Drawing.Size(1271, 438);
+            this.Controls.Add(this.lnkJiraEntry);
+            this.Controls.Add(this.txtEntryDetails);
             this.Controls.Add(this.datJiraSubmissions);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
@@ -162,6 +186,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.jirareportsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.masterDataSet)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -180,6 +205,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn teststepDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn homergabboversionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn deviceversionsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox txtEntryDetails;
+        private System.Windows.Forms.LinkLabel lnkJiraEntry;
     }
 }
 
