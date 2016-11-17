@@ -55,5 +55,29 @@ namespace AspiritechJIRABugReportBrowser
                 System.Diagnostics.Process.Start("https://jirapro.bose.com/browse" + lnkJiraEntry.Text);
             }
         }
+
+        private void datJiraSubmissions_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
+            {
+                deleteSelectedRows();
+            }
+        }
+
+        private void btnDeleteSelectedRows_Click(object sender, EventArgs e)
+        {
+            deleteSelectedRows();
+        }
+
+        private void deleteSelectedRows()
+        {
+            if (MessageBox.Show("Are you sure you want to delete these row(s)?", "Aspiritech JIRA Bug Report Browser", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                foreach (DataGridViewRow row in this.datJiraSubmissions.SelectedRows)
+                {
+                    datJiraSubmissions.Rows.Remove(row);
+                }
+            }
+        }
     }
 }
