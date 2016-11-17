@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -73,9 +74,21 @@ namespace AspiritechJIRABugReportBrowser
         {
             if (MessageBox.Show("Are you sure you want to delete these row(s)?", "Aspiritech JIRA Bug Report Browser", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                foreach (DataGridViewRow row in this.datJiraSubmissions.SelectedRows)
+                try
                 {
-                    datJiraSubmissions.Rows.Remove(row);
+                    jira_reportsTableAdapter.Connection.Open(); // Open the SQL database connection.
+                    // Remove the selected rows from both the visible table and the SQL database.
+                    foreach (DataGridViewRow row in this.datJiraSubmissions.SelectedRows)
+                    {
+                        SqlCommand cmd = new SqlCommand("DELETE FROM jira_reports WHERE ID='" + Convert.ToInt32(row.Cells[0].Value) + "'", jira_reportsTableAdapter.Connection);
+                        cmd.ExecuteNonQuery();
+                        datJiraSubmissions.Rows.Remove(row);
+                    }
+                    jira_reportsTableAdapter.Connection.Close(); // Close the SQL database connection.
+                }
+                catch (Exception deletionException)
+                {
+                    MessageBox.Show(deletionException.Message, "Aspiritech JIRA Bug Report Browser");
                 }
             }
         }
