@@ -32,13 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.datJiraSubmissions = new System.Windows.Forms.DataGridView();
-            this.jirareportsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.masterDataSet = new AspiritechJIRABugReportBrowser.masterDataSet();
-            this.jira_reportsTableAdapter = new AspiritechJIRABugReportBrowser.masterDataSetTableAdapters.jira_reportsTableAdapter();
-            this.txtEntryDetails = new System.Windows.Forms.TextBox();
-            this.lnkJiraEntry = new System.Windows.Forms.LinkLabel();
-            this.btnDeleteSelectedRows = new System.Windows.Forms.Button();
-            this.txtFilterBox = new System.Windows.Forms.TextBox();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jiraidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timereportedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,7 +51,15 @@
             this.test_machine_names = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.workaround = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.other_notes_or_comments = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jirareportsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.masterDataSet = new AspiritechJIRABugReportBrowser.masterDataSet();
+            this.jira_reportsTableAdapter = new AspiritechJIRABugReportBrowser.masterDataSetTableAdapters.jira_reportsTableAdapter();
+            this.txtEntryDetails = new System.Windows.Forms.TextBox();
+            this.lnkJiraEntry = new System.Windows.Forms.LinkLabel();
+            this.btnDeleteSelectedRows = new System.Windows.Forms.Button();
+            this.txtFilterBox = new System.Windows.Forms.TextBox();
             this.lblFilter = new System.Windows.Forms.Label();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.datJiraSubmissions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jirareportsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.masterDataSet)).BeginInit();
@@ -104,65 +105,6 @@
             this.datJiraSubmissions.TabIndex = 0;
             this.datJiraSubmissions.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datJiraSubmissions_CellDoubleClick);
             this.datJiraSubmissions.KeyDown += new System.Windows.Forms.KeyEventHandler(this.datJiraSubmissions_KeyDown);
-            // 
-            // jirareportsBindingSource
-            // 
-            this.jirareportsBindingSource.DataMember = "jira_reports";
-            this.jirareportsBindingSource.DataSource = this.masterDataSet;
-            // 
-            // masterDataSet
-            // 
-            this.masterDataSet.DataSetName = "masterDataSet";
-            this.masterDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // jira_reportsTableAdapter
-            // 
-            this.jira_reportsTableAdapter.ClearBeforeFill = true;
-            // 
-            // txtEntryDetails
-            // 
-            this.txtEntryDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEntryDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEntryDetails.Location = new System.Drawing.Point(11, 342);
-            this.txtEntryDetails.Multiline = true;
-            this.txtEntryDetails.Name = "txtEntryDetails";
-            this.txtEntryDetails.ReadOnly = true;
-            this.txtEntryDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtEntryDetails.Size = new System.Drawing.Size(894, 284);
-            this.txtEntryDetails.TabIndex = 1;
-            this.txtEntryDetails.TabStop = false;
-            // 
-            // lnkJiraEntry
-            // 
-            this.lnkJiraEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lnkJiraEntry.AutoSize = true;
-            this.lnkJiraEntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkJiraEntry.Location = new System.Drawing.Point(12, 316);
-            this.lnkJiraEntry.Name = "lnkJiraEntry";
-            this.lnkJiraEntry.Size = new System.Drawing.Size(0, 16);
-            this.lnkJiraEntry.TabIndex = 2;
-            this.lnkJiraEntry.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkJiraEntry_LinkClicked);
-            // 
-            // btnDeleteSelectedRows
-            // 
-            this.btnDeleteSelectedRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteSelectedRows.Location = new System.Drawing.Point(744, 313);
-            this.btnDeleteSelectedRows.MinimumSize = new System.Drawing.Size(161, 23);
-            this.btnDeleteSelectedRows.Name = "btnDeleteSelectedRows";
-            this.btnDeleteSelectedRows.Size = new System.Drawing.Size(161, 23);
-            this.btnDeleteSelectedRows.TabIndex = 3;
-            this.btnDeleteSelectedRows.Text = "Delete Selected Row(s)";
-            this.btnDeleteSelectedRows.UseVisualStyleBackColor = true;
-            this.btnDeleteSelectedRows.Click += new System.EventHandler(this.btnDeleteSelectedRows_Click);
-            // 
-            // txtFilterBox
-            // 
-            this.txtFilterBox.Location = new System.Drawing.Point(63, 16);
-            this.txtFilterBox.Name = "txtFilterBox";
-            this.txtFilterBox.Size = new System.Drawing.Size(155, 20);
-            this.txtFilterBox.TabIndex = 4;
-            this.txtFilterBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFilterBox_KeyDown);
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -310,6 +252,65 @@
             this.other_notes_or_comments.ReadOnly = true;
             this.other_notes_or_comments.Visible = false;
             // 
+            // jirareportsBindingSource
+            // 
+            this.jirareportsBindingSource.DataMember = "jira_reports";
+            this.jirareportsBindingSource.DataSource = this.masterDataSet;
+            // 
+            // masterDataSet
+            // 
+            this.masterDataSet.DataSetName = "masterDataSet";
+            this.masterDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // jira_reportsTableAdapter
+            // 
+            this.jira_reportsTableAdapter.ClearBeforeFill = true;
+            // 
+            // txtEntryDetails
+            // 
+            this.txtEntryDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEntryDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEntryDetails.Location = new System.Drawing.Point(11, 342);
+            this.txtEntryDetails.Multiline = true;
+            this.txtEntryDetails.Name = "txtEntryDetails";
+            this.txtEntryDetails.ReadOnly = true;
+            this.txtEntryDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtEntryDetails.Size = new System.Drawing.Size(894, 284);
+            this.txtEntryDetails.TabIndex = 1;
+            this.txtEntryDetails.TabStop = false;
+            // 
+            // lnkJiraEntry
+            // 
+            this.lnkJiraEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lnkJiraEntry.AutoSize = true;
+            this.lnkJiraEntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnkJiraEntry.Location = new System.Drawing.Point(12, 316);
+            this.lnkJiraEntry.Name = "lnkJiraEntry";
+            this.lnkJiraEntry.Size = new System.Drawing.Size(0, 16);
+            this.lnkJiraEntry.TabIndex = 2;
+            this.lnkJiraEntry.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkJiraEntry_LinkClicked);
+            // 
+            // btnDeleteSelectedRows
+            // 
+            this.btnDeleteSelectedRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteSelectedRows.Location = new System.Drawing.Point(744, 313);
+            this.btnDeleteSelectedRows.MinimumSize = new System.Drawing.Size(161, 23);
+            this.btnDeleteSelectedRows.Name = "btnDeleteSelectedRows";
+            this.btnDeleteSelectedRows.Size = new System.Drawing.Size(161, 23);
+            this.btnDeleteSelectedRows.TabIndex = 3;
+            this.btnDeleteSelectedRows.Text = "Delete Selected Row(s)";
+            this.btnDeleteSelectedRows.UseVisualStyleBackColor = true;
+            this.btnDeleteSelectedRows.Click += new System.EventHandler(this.btnDeleteSelectedRows_Click);
+            // 
+            // txtFilterBox
+            // 
+            this.txtFilterBox.Location = new System.Drawing.Point(63, 16);
+            this.txtFilterBox.Name = "txtFilterBox";
+            this.txtFilterBox.Size = new System.Drawing.Size(155, 20);
+            this.txtFilterBox.TabIndex = 4;
+            this.txtFilterBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFilterBox_KeyDown);
+            // 
             // lblFilter
             // 
             this.lblFilter.AutoSize = true;
@@ -320,11 +321,22 @@
             this.lblFilter.TabIndex = 5;
             this.lblFilter.Text = "Search:";
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(830, 12);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 6;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(917, 638);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.lblFilter);
             this.Controls.Add(this.txtFilterBox);
             this.Controls.Add(this.btnDeleteSelectedRows);
@@ -332,7 +344,7 @@
             this.Controls.Add(this.txtEntryDetails);
             this.Controls.Add(this.datJiraSubmissions);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(0, 676);
+            this.MinimumSize = new System.Drawing.Size(16, 676);
             this.Name = "MainWindow";
             this.Text = "Aspiritech JIRA Bug Report Browser";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -374,6 +386,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn workaround;
         private System.Windows.Forms.DataGridViewTextBoxColumn other_notes_or_comments;
         private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
 

@@ -24,6 +24,12 @@ namespace AspiritechJIRABugReportBrowser
             this.jira_reportsTableAdapter.Fill(this.masterDataSet.jira_reports);
         }
 
+        // Button click event for refreshing the table.
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            this.jira_reportsTableAdapter.Fill(this.masterDataSet.jira_reports);
+        }
+
         // Populate the Entry Details box when the user double-clicks a cell.
         private void datJiraSubmissions_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -96,7 +102,7 @@ namespace AspiritechJIRABugReportBrowser
         {
             if (e.KeyCode == Keys.Enter)
             {
-                StringBuilder filter = new StringBuilder();
+                /*StringBuilder filter = new StringBuilder();
                 foreach (DataGridViewColumn column in datJiraSubmissions.Columns)
                 {
                     if (filter.ToString() == "")
@@ -108,7 +114,7 @@ namespace AspiritechJIRABugReportBrowser
                         filter.Append(" OR ");
                         filter.Append(column.Name + " like '" + txtFilterBox.Text + "'");
                     }
-                }
+                }*/
                 // Apply the filter to the data grid view. 
                 /* There is a more elegant way to do this,
                 (datJiraSubmissions.DataSource as DataTable).DefaultView.RowFilter = filter.ToString();
