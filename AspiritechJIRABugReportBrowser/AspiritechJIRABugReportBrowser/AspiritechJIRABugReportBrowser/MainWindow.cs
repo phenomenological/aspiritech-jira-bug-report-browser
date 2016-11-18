@@ -22,7 +22,6 @@ namespace AspiritechJIRABugReportBrowser
         {
             // TODO: This line of code loads data into the 'masterDataSet.jira_reports' table. You can move, or remove it, as needed.
             this.jira_reportsTableAdapter.Fill(this.masterDataSet.jira_reports);
-
         }
 
         // Populate the Entry Details box when the user double-clicks a cell.
@@ -90,6 +89,56 @@ namespace AspiritechJIRABugReportBrowser
                 {
                     MessageBox.Show(deletionException.Message, "Aspiritech JIRA Bug Report Browser");
                 }
+            }
+        }
+
+        private void txtFilterBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                StringBuilder filter = new StringBuilder();
+                foreach (DataGridViewColumn column in datJiraSubmissions.Columns)
+                {
+                    if (filter.ToString() == "")
+                    {
+                        filter.Append(column.Name + " like '" + txtFilterBox.Text + "'");
+                    }
+                    else
+                    {
+                        filter.Append(" OR ");
+                        filter.Append(column.Name + " like '" + txtFilterBox.Text + "'");
+                    }
+                }
+                // Apply the filter to the data grid view. 
+                /* There is a more elegant way to do this,
+                (datJiraSubmissions.DataSource as DataTable).DefaultView.RowFilter = filter.ToString();
+                 but I was receiving a stubborn null reference error.
+                 */
+                CurrencyManager currencyManager = (CurrencyManager)BindingContext[datJiraSubmissions.DataSource];
+                currencyManager.SuspendBinding();
+                for (int i = 0; i < datJiraSubmissions.RowCount; i++)
+                {
+                    bool filterMatch = false;
+                    for (int j = 0; j < datJiraSubmissions.ColumnCount; j++)
+                    {
+                        if (datJiraSubmissions.Rows[i].Cells[j].Value.ToString().ToLower().Contains(txtFilterBox.Text.ToLower()))
+                        {
+                            filterMatch = true;
+                            break;
+                        }
+                    }
+                    if (!filterMatch)
+                    {
+
+                        datJiraSubmissions.Rows[i].Visible = false;
+                    }
+                    else
+                    {
+                        datJiraSubmissions.Rows[i].Visible = true;
+                        filterMatch = false;
+                    }
+                }
+                currencyManager.ResumeBinding();
             }
         }
     }
