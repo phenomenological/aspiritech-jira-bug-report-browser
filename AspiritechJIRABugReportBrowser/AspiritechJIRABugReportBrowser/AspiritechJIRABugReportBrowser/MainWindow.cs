@@ -58,7 +58,7 @@ namespace AspiritechJIRABugReportBrowser
         {
             if (lnkJiraEntry.Text != "")
             {
-                System.Diagnostics.Process.Start("https://jirapro.bose.com/browse" + lnkJiraEntry.Text);
+                System.Diagnostics.Process.Start("https://jirapro.bose.com/browse/" + lnkJiraEntry.Text);
             }
         }
 
